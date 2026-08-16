@@ -31,20 +31,20 @@ if st.button("Predict"):
                     'RestingECG': resting_ecg,
                     'MaxHR': max_hr,
                     'ExerciseAngina': exercise_angina,
-                    'oldpeak' : oldpeak,
+                    'Oldpeak' : oldpeak,
                     'ST_Slope': st_slope,
     }
-
-
-result = predict_heart_disease(patient_data)
+    result = predict_heart_disease(patient_data)
 
 # Threshold (0.35) selected during evaluation to prioritize recall
     # over precision, given the asymmetric cost of false negatives
-if result['prediction'] == 1:
-    st.error(f"High Risk of Heart Disease - Probability: {result['probability']:.2f}")
-else:
-    st.success(f"Low Risk of Heart Disease - Probability: {result['probability']:.2f}")
+    if result['prediction'] == 1:
+        st.error(f"High Risk of Heart Disease - Probability: {result['probability']:.2f}")
+    else:
+        st.success(f"Low Risk of Heart Disease - Probability: {result['probability']:.2f}")
 
-    
-    st.caption("Note: This prediction is based on a machine learning model and and for Educational Purposes only"
-               "and should not replace professional medical advice. Please consult a healthcare provider for a comprehensive evaluation.")
+
+    st.caption("Note: This prediction is based on a machine learning model and is for "
+        "educational purposes only, and should not replace professional medical "
+        "advice. Please consult a healthcare provider for a comprehensive evaluation."
+    )
